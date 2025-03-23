@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Observer Effect in Double-Slit Experiment</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto&display=swap" rel="stylesheet">
+  <!-- p5.js for graphics and animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  
+  <!-- MediaPipe FaceMesh for facial landmark detection -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh"></script>
+  
+  <!-- TensorFlow.js dependencies required by MediaPipe -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
+</head>
+<body>
+  <h1>Observer Effect in Double-Slit Experiment</h1>
+  
+  <div id="webcamContainer">
+    <!-- Video element for real-time face/eye detection -->
+    <video id="webcam" autoplay playsinline></video>
+    
+    <!-- Observer state display -->
+    <div id="status">
+      <p>Observer Status: <span id="observerState">OFF</span></p>
+      <p>Instructions: Open/close your eyes to toggle observer effect</p>
+    </div>
+  </div>
+  
+  <div id="ui">
+    <label>Wavelength: <span id="wavelengthValue">550</span> nm</label>
+    <input type="range" id="wavelengthSlider" min="400" max="700" value="550">
+    
+    <label>Slit Width: <span id="slitWidthValue">0.2</span> mm</label>
+    <input type="range" id="slitWidthSlider" min="0.05" max="0.5" step="0.01" value="0.2">
+    
+    <label>Slit Distance: <span id="slitDistanceValue">0.5</span> mm</label>
+    <input type="range" id="slitDistanceSlider" min="0.2" max="1.0" step="0.05" value="0.5">
+    
+    <div>
+      <button id="startButton">Start</button>
+      <button id="pauseButton">Pause</button>
+      <button id="stopButton">End</button>
+    </div>
+  </div>
+  
+  <div id="info">
+    <p>Quantum Time: <span id="quantumClock">0.00</span> sec</p>
+    <p>Particles Detected: <span id="particleCounter">0</span></p>
+  </div>
+  
+  <!-- Main script -->
+  <script src="script.js"></script>
+</body>
+</html>
